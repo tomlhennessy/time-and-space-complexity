@@ -178,3 +178,95 @@ For practical purposes, Big-O usually refers to the worse-case scenario
     • Quadratic Time (O(n^2)): Time increases with the square of the input size
 
 Understanding Big-O helps in optimising code and is crucial for technical interviews, especially for large-scale applications
+
+
+# Intro to Space Complexity
+
+* What is Space Complexity?
+    Space complexity measures the amount of memory an algorithm uses in relation to the size of the input. It is expressed using Big-O notation, similar to time complexity
+
+* Types of Space Complexity
+    1. Constant Space Complexity (O(1)): The memory used by the algorithm does not change with the input size
+    2. Linear Space Complexity (O(n)): The memory used grows linearly with the input size
+    3. Quadratic Space Complexity (O(n^2)): The memory used grows proportionally to the square of the input size
+
+* Key Concepts
+    • Memory Usage: Identifying the memory required by variables and data structures within an algorithm
+    • Ignoring Constants: As with time complexity, constant coefficients and lower-order terms are ignored by space complexity analysis
+
+* Examples of Space Complexity
+
+    1. Constant Space Complexity
+        ```js
+        function addNums(n) {
+            let total = 0;
+            for (let i = 1; i <= n; i++) {
+                total += i;
+            }
+            return total;
+        }
+        ```
+        • the function uses a fixed amount of memory regardless of the input size, hence O(1)
+
+    2. Linear Space Complexity (O(n))
+        ```js
+        function getNumList(n) {
+            let nums = [];
+            for (let i = 0; i < n; i++) {
+                nums.push(i);
+            }
+            return nums;
+        }
+        ```
+        • The array `nums` requires memory proportional to the input size `n`, resulting in O(n)
+
+    3. Quadratic Space Complexity (O(n^2))
+        ```js
+        function getNumPairsList(n) {
+            let pairs = [];
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n; j++) {
+                    pairs.push([i, j]);
+                }
+            }
+            return pairs;
+        }
+        ```
+        • The array `pairs` stores `n^2` pairs, leading to O(n^2) space complexity
+
+
+* Modifying Arrays In-Place
+    • In-place Algorithms: Modifying the input data directly instead of creating new data structures can reduce space complexity
+
+    Example without in-place modification:
+    ```js
+    function increaseByOne(nums) {
+        const increased = [];
+        for (let i = 0; i < nums.length; i++) {
+            increased.push(nums[i] + 1);
+        }
+        return increased;
+    }
+    ```
+    • This function creates a new array `increased` with `n` elements, resulting in O(n) space complexity
+
+    Example with in-place modification:
+    ```js
+    function increaseByOneInPlace(nums) {
+        for (let i = 0; i < nums.length; i++) {
+            nums[i]++
+        }
+    }
+    ```
+    • This function modifies the original array `nums`, resulting in O(1) space complexity
+
+* Considerations for In-Place Algorithms
+    • In-place algorithms are space-efficient but may not be suitable when the original data needs to be preserved
+    • Ensure you understand the problem requirements and constraints before deciding on in-place mofifications
+
+* Summary
+    • Constant Space (O(1)): Memory usage does not depend on input size
+    • Linear Space (O(n)): Memory usage grows linearly with input size
+    • Quadratic space (O(n^2)): Memory usage grows with the square of the input size
+
+Understanding space complexity helps in optimising memory usage of algorithms, which is crucial for performance, expecially in memory-constrained environments.
